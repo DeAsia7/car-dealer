@@ -59,6 +59,10 @@ app.patch('/cars/:id/color', (req, res) => {
     }
 })
 
+cars.color = color;
+res.json ({message: `color for car with ID ${Id} updated to ${color}`});
+
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
