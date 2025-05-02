@@ -20,8 +20,8 @@ app.post('/cars', (req, res) => {
 
     const newId = req.body.id;
     const exists = cars.some(car => car.id === newId);
-    if (!newId) {
-        return res.status(400).json({ error: `car with Id ${newcar} already exists` });
+    if (!exists) {
+        return res.status(400).json({ error: `car with Id ${newCar} already exists` });
     }
     cars.push(newCar);
     res.status(201).json(newCar);
@@ -49,10 +49,10 @@ app.get(`/cars/brand/:brand`, (req, res) => {
 })
 
 //challenge: update color
-app.patch('/cars/:id/color', (req, res) => {
+app.patch('/cars/:id', (req, res) => {
     const Id = parseInt(req.params.id);
-    const [color] = req.body;
-    const cars = cars.find(cars => cars.id === Id);
+    const {color} = req.body;
+    const car = cars.find(car => car.id === Id);
 
     if (!cars) {
         return res.status(404).json({ error: `cars with ID ${Id} not found.` });
