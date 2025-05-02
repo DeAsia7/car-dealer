@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-app.arguments(express.json());
+app.use(express.json());
 
 let cars =[
  { id: 1, brand: "Toyota", model: "Corolla", year: 2020, color: "Red" },
