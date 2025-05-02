@@ -40,3 +40,7 @@ app.delete('/cars/:id', (req, res) => {
     res.send(`Car with id ${carId} deleted successfully`);
 })
 
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
+
