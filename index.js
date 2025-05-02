@@ -47,7 +47,7 @@ app.get(`/cars/brand/:brand`, (req, res) => {
 
     res.json(result);
 })
-
+/*
 //challenge: update color
 app.patch('/cars/:id', (req, res) => {
     const Id = parseInt(req.params.id);
@@ -58,7 +58,7 @@ app.patch('/cars/:id', (req, res) => {
         return res.status(404).json({ error: `cars with ID ${Id} not found.` });
     }
 })
-/*
+
 cars.colors = colors;
 res.json ({message: `color for car with ID ${Id} updated to ${color}`});
 */
