@@ -40,6 +40,25 @@ app.delete('/cars/:id', (req, res) => {
     res.send(`Car with id ${carId} deleted successfully`);
 })
 
+//get car by brand
+app.get(`/cars/brand/:brand`, (req, res) => {
+    const brand = req.params.brand;
+    const result = cars.filter(car => car.brand.toLowerCase() === brand.toLowerCase());
+
+    res.json(result);
+})
+
+//challenge: update color
+app.patch('/cars/:id/color', (req, res) => {
+    const Id = parseInt(req.params.id);
+    const [color] = req.body;
+    const cars = cars.find(cars => cars.id === Id);
+
+    if (!cars) {
+        return res.status(404).json({ error: `cars with ID ${Id} not found.` });
+    }
+})
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
