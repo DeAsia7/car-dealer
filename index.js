@@ -47,21 +47,22 @@ app.get(`/cars/brand/:brand`, (req, res) => {
 
     res.json(result);
 })
-/*
+
 //challenge: update color
 app.patch('/cars/:id', (req, res) => {
     const Id = parseInt(req.params.id);
-    const {colors} = req.body;
+   console.log(req.body) 
+   /* const {colors} = req.body;
     const car = cars.find(car => car.id === Id);
 
     if (!cars) {
         return res.status(404).json({ error: `cars with ID ${Id} not found.` });
     }
-})
 
-cars.colors = colors;
+
+cars.colors = colors; */
 res.json ({message: `color for car with ID ${Id} updated to ${color}`});
-*/
+})
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
