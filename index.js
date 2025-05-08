@@ -52,7 +52,7 @@ app.get(`/cars/brand/:brand`, (req, res) => {
 app.patch('/cars/:id', (req, res) => {
     const Id = parseInt(req.params.id);
    console.log(req.body) 
-   /* const {colors} = req.body;
+   const {colors} = req.body;
     const car = cars.find(car => car.id === Id);
 
     if (!cars) {
@@ -60,8 +60,8 @@ app.patch('/cars/:id', (req, res) => {
     }
 
 
-cars.colors = colors; */
-res.json ({message: `color for car with ID ${Id} updated to ${color}`});
+cars.colors = colors; 
+res.json ({message: `color for car with ID ${Id} updated to ${colors}`});
 })
 
 app.listen(PORT, () => {
