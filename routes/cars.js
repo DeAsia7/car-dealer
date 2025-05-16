@@ -1,5 +1,5 @@
 import express from 'express';
-import { db, cars, clients, sales} from '../db/deb.js';
+import { db, cars, clients, sales} from '../db/db.js';
 import { eq, like, and} from 'drizzle-orm';
 
 const router = express.Router();
