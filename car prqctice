@@ -1,0 +1,37 @@
+1.cars:
+-most expensive cars
+max or order by + limit
+
+select max(price) from cars
+
+await db.select({value: max(price) }).from(cars)
+
+router.get('/most-expensive', async (req, res) => {
+const result = await db.select({value: max(price) }).from(cars)
+res.json(result)
+})
+
+2. clients
+-all clients tht have bought cars. full name in a single record,,concat
+ 
+select concat(first_name,' ', last_name) from clients
+join sales on client_id = sales.client_id
+
+await db.select(value: concat(first_name,' ', last_name) ).from(clients)
+.join(sales, eq('client_id', 'sales.client_id'))
+
+router.get('/bought-cars', async (req, res) => {
+const result = 
+res.json(result)
+})
+
+
+
+3.sales
+--create another sale report including name, car make model price year and color
+date of sale
+
+
+
+INSERT INTO cars (make, model, year,price) VALUES('Toyota', 'Camry', 2025, 30000.21),
+('Nissan', 'Versa', 2016, 10000), ('Chevrolet', 'Impala', 1967, 15000);
