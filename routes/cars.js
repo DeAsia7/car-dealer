@@ -11,14 +11,19 @@ router.get('/after-2020', async (req, res) => {
 })
 
 //change price of a car
-router.
-
-await db.update(cars).set({price: 400}).where(eq(cars.id, 1));
+router.put('/update-price/:id', async (req, res) => {
+   const result =  await db.update(cars).set({price: 400}).where(eq(cars.id, 1));
+    res.json({message: 'Price updated successfully', result});
+})
 
 
 //remove a car
+router.delete('/delete/:id', async (req, res) => {
+   const result =  await db.delete(cars).where(lte(cars.year, 2008));
 
-await db.delete(cars).where(lte(cars.year, 2008));
+    res.json({ message: 'Car deleted successfully', result });
+})
+
 
 //add 3 new cars post is adding
 router.post('/add', async (req, res) => {
@@ -31,5 +36,19 @@ await db.insert(cars).values([
 })
 
 //cars tht are red and start with m
+router.get('/red-m', async (req, res) => {
+    const result = await db.select().from(cars).where(and(eq(cars.color, 'red'), like(cars.make, 'm%')));
+    res.json(result);
+})
 
-await db.select().from(cars).where(and(eq(cars.color, 'red'), eq(cars.make, 'm%'));
+
+
+
+
+/*
+GET - Fetch data app.get('/items', handler)
+POST -  Add data app.post('/items', handler)
+PUT - Update app.put('/items/:id', handler)
+Patch - chan
+DELETE - Remove app.delete('/items/:id', handler)
+*/
