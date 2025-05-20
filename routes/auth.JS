@@ -1,5 +1,6 @@
-import express from
+import express from 'express';
 import jwt from 'jsonwebtoken';
+import {validateBody}
 
 const router = express.Router();
 
