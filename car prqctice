@@ -1,4 +1,4 @@
-1.cars:
+--1.cars:
 -most expensive cars
 max or order by + limit
 
@@ -11,7 +11,7 @@ const result = await db.select({value: max(price) }).from(cars)
 res.json(result)
 })
 
-2. clients
+--2. clients
 -all clients tht have bought cars. full name in a single record,,concat
  
 select concat(first_name,' ', last_name) from clients
@@ -51,3 +51,82 @@ select
 
 INSERT INTO cars (make, model, year,price) VALUES('Toyota', 'Camry', 2025, 30000.21),
 ('Nissan', 'Versa', 2016, 10000), ('Chevrolet', 'Impala', 1967, 15000);
+
+--------------------------------------------------------
+--learning zod --
+
+Instructions for Students
+Before starting:
+1.	Visit the official documentation: https://zod.dev/
+2.	For each task below, write the Zod schema.
+⸻
+--Classwork 1: Basic Object Validation (Easy)--
+Objective:
+Validate a user object with required fields.
+{
+username: "andrea",
+password: "supersecret"
+}
+Requirements:
+•	username: must be a non-empty string
+•	password: at least 8 characters long
+⸻
+--Classwork 2: Type Inference + Optional Fields (Beginner/Medium)--
+Objective:
+Validate a product object and use Zod’s .infer to define a TypeScript type.
+{
+name: "iPhone 16",
+price: 1199.99,
+onSale: true
+}
+Requirements:
+•	name: required string
+•	price: required number > 0
+•	onSale: optional boolean (default: false)
+⸻
+--Classwork 3: Arrays and Enums (Medium)--
+Objective:
+Validate a course enrollment form.
+{
+name: "Sebastian",
+courses: ["HTML", "CSS", "React"]
+}
+Requirements:
+•	name: string
+•	courses: array of strings, but only allow values from a set: ["HTML", "CSS", "JS", "React", "Node"]
+•	Must have at least 1 course and max 5.
+⸻
+--Classwork 4: Nested Object Validation (Medium-Hard)--
+Objective:
+Validate an order object with a nested client and car object.
+{
+client: {
+id: 22,
+name: "Andrea"
+},
+car: {
+make: "Mazda",
+year: 2023
+}
+}
+Requirements:
+•	client.id: number
+•	client.name: string
+•	car.make: string
+•	car.year: number between 2000 and 2025
+⸻
+--Classwork 5: Custom Error Messages + Refinement (Hard)--
+Objective:
+Validate a registration form.
+{
+email: "andrea@gmail.com",
+password: "12345678",
+confirmPassword: "12345678"
+}
+Requirements:
+•	email: must be a valid email format
+•	password: at least 8 characters
+•	confirmPassword: must match password
+Bonus:
+Use .refine() to ensure password === confirmPassword and show a custom error message like:
+"Passwords do not match"
