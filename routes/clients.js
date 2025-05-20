@@ -1,6 +1,10 @@
 import express from 'express';
 import { db, clients } from '../db/db.js';
 import { eq } from 'drizzle-orm';
+import { validateBody } from '../middlewares/validateBody.js';
+import { clientSchema } from '../validators/index.js';
+
+
 
 const router = express.Router();
 
@@ -18,14 +22,14 @@ router.get('/clients/:id', async (req, res) => {
 })
 
 //add new client
-router.post('/clients', async (req, res) => {
+router.post('/clients', validateBody(clientSchema), async (req, res) => {
     const { first_name, last_name, age, is_premium} = req.body;
     await db.insert(clients).values({ first_name, last_name, age, is_premium});
     res.status(201).json({ message: 'Client added successfully' });
 })
 
 //update client
-router.put('/client/:id' , async(req, res) => {
+router.put('/client/:id', validateBody(clientSchema),  async(req, res) => {
     const id = parseInt(req.params.id)
     const { first_name, last_name, age, is_premium} = req.body;
     await db.update(clients).set({first_name, last_name, age, is_premium}).where(eq(clients.id, id));

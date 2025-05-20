@@ -7,9 +7,12 @@ export function validate(schema) {
                 details: results.error.error
            
             })
+        }
 
+            req.body = result.data
+            next();
         }
     }
-}
+
     
     
