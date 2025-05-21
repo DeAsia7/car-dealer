@@ -72,9 +72,11 @@ Requirements:
 import { z } from 'zod';
 export const courseSchema = z.object({
     name: z.string(),
-    courses: z.Enums(courses).array().min(1).max(5)
+    courses: z.Enums(courses).array("HTML", "CSS", "React").min(1).max(5)
 })
-const course = ["HTML", "CSS", "JS", "React", "Node"] as const
+
+
+/*const course = ["HTML", "CSS", "JS", "React", "Node"] as const
 
 const courseEnum = z.enum(course);
 type courseEnum = z.infer<typeof courseEnum>;
@@ -86,7 +88,7 @@ const courseData = {
     name: "Sebastian",
     courses: ["HTML", "CSS", "React"]
 };
-
+*/
 
 
 ⸻
@@ -141,7 +143,7 @@ Use .refine() to ensure password === confirmPassword and show a custom error mes
 
 import { z } from 'zod';
 export const formSchema = z.object
-email: z.email() 
+email: z.email("andrea@gmail.com") 
 password: z.number().min(8).refine((val) => val === password, {
     message: "Passwords do not match"
 }),
