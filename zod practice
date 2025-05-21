@@ -54,6 +54,8 @@ if (result.success) {
     console.error("Validation Errors:", result.error.errors);
 }
 }
+
+
 ⸻
 ------Classwork 3: Arrays and Enums (Medium)--
 Objective:
@@ -120,6 +122,7 @@ export const orderSchema = z.object({
 })
 
 ⸻
+
 -----Classwork 5: Custom Error Messages + Refinement (Hard)--
 Objective:
 Validate a registration form.
