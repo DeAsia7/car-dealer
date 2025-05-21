@@ -22,7 +22,7 @@ Requirements:
 import { z } from 'zod';
 export const loginSchema = z.object({
     username: z.string().min(1), 
-    password: z.string().min(8)
+    password: z.string().min(8, "password must be at least 8 characters long")
 });
 
 
@@ -43,7 +43,7 @@ Requirements:
 import { z } from 'zod';
 export const productSchema = z.object({
     name: z.string(),
-    price: z.number().typeof('number').min(1199.99),
+    price: z.number().typeof('number').min(1),
     onSale: z.boolean().optional().default(false)
 })
 const result = productSchema.safeparse(productData);
@@ -72,7 +72,7 @@ Requirements:
 import { z } from 'zod';
 export const courseSchema = z.object({
     name: z.string(),
-    courses: z.Enums(courses).array("HTML", "CSS", "React").min(1).max(5)
+    courses: z.array(z.enum(["HTML", "CSS", "React"])).min(1).max(5)
 })
 
 
@@ -115,7 +115,7 @@ import { z } from 'zod';
 export const orderSchema = z.object({
     client: z.object({
         id: z.number(),
-        name: z.string()
+        name: z.string().min(1)
     }),
     car: z.object({
         make: z.string(),
@@ -142,11 +142,22 @@ Use .refine() to ensure password === confirmPassword and show a custom error mes
 "Passwords do not match"
 
 import { z } from 'zod';
-export const formSchema = z.object
-email: z.email("andrea@gmail.com") 
+export const formSchema = z.object({
+email: z.string().email("Invalid email format"), 
 password: z.number().min(8).refine((val) => val === password, {
     message: "Passwords do not match"
-}),
+})
+})
+//this is another example of how to use refine
+export const registerSchema = z.object({
+    emai: z.string().email("Invalid email format"),
+    password: z.string().min(8),
+    confirmPassword: z.string().min(8)
+}).refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"]
+
+})
 
 
 
