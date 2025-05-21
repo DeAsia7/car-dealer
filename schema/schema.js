@@ -24,3 +24,9 @@ export const sales = mysqlTable('sales', {
     sale_date: datetime('sale_date', { length: 255 }),
     
 })
+
+export const users = mysqlTable('users', {
+    id: int('id').primaryKey().autoincrement(),
+    username: varchar('username', { length: 255 }),
+    password: varchar('password', { length: 255 }),
+})

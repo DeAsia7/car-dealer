@@ -1,8 +1,8 @@
 import express from 'express';
-import { db, clients } from '../db/db.js';
+import { db, clients } from './db/db.js';
 import { eq } from 'drizzle-orm';
-import { validateBody } from '../middlewares/validateBody.js';
-import { clientSchema } from '../validators/index.js';
+import { validateBody } from '../zod/middlewares/validateBody.js';
+import { clientSchema } from '../../middlewares/validators/index.js';
 
 
 

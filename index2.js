@@ -1,8 +1,8 @@
 import express from 'express';
-import carRoutes from './routes/cars.js';
-import clientRoutes from './routes/clients.js';
-import salesRoutes from './routes/sales.js';
-import authRoutes from './routes/auth.JS';
+import carRoutes from '../zod/routes/cars.js';
+import clientRoutes from '../zod/routes/clients.js';
+import salesRoutes from '../zod/routes/sales.js';
+import authRoutes from '../zod/routes/auth.JS';
 import {logger} from './middleware/logger.js';
 import {verifyToken } from './middleware/token.js';
 
