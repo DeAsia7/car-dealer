@@ -1,7 +1,7 @@
-export function validate(schema) {
+export function validateBody(schema) {
     return (req, res, next) => {
-  const result = schema.safeParse(req.body);
-        if (!result.success) {
+  const results = schema.safeParse(req.body);
+        if (!results.success) {
             return res.status(400).json({
                 error: 'Validation Failed',
                 details: results.error.error
@@ -9,7 +9,7 @@ export function validate(schema) {
             })
         }
 
-            req.body = result.data
+            req.body = results.data
             next();
         }
     }
