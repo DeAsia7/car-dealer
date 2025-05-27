@@ -7,7 +7,7 @@ const router = express.Router();
 
 //get all sales, including car and client details
 router.get('/sales', async (req, res) => {
-    const result = await db .select({
+    const result = await db.select({
         sale_id: sales.id,
         date: sales.sale_date,
         client_name: clients.first_name,
@@ -35,4 +35,23 @@ router.get('/sales/:client_id', async (req, res) => {
     const client_id = parseInt(req.params.client_id);
     const result = await db.select().from(sales).where(eq(sales.client_id, client_id));
     res.json(result);
-});
+})
+
+//get full sales report
+router.get('/sales/sales-report', async (req, res) => {
+    const result = await db.select({
+        client_name: sql `CONCAT(${clients.first_name}, ' ', ${clients.last_name})`,
+        make: cars.make,
+        model: cars.model,
+        price: cars.price,
+        year: cars.year,
+        color: cars.color,
+        date_of_sale: sales.sale_date,
+    }).from(sales)
+        .innerJoin(clients, eq(clients.id, sales.client_id))
+        .innerJoin(cars, eq(cars.id, sales.car_id));
+    res.json(result);
+
+})
+export default router;
+
