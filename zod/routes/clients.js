@@ -29,7 +29,7 @@ router.post('/clients', validateBody(clientSchema), async (req, res) => {
 })
 
 //update client
-router.put('/client/:id', validateBody(clientSchema),  async(req, res) => {
+router.put('/clients/:id', validateBody(clientSchema),  async(req, res) => {
     const id = parseInt(req.params.id)
     const { first_name, last_name, age, is_premium} = req.body;
     await db.update(clients).set({first_name, last_name, age, is_premium}).where(eq(clients.id, id));
