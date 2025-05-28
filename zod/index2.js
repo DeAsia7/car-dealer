@@ -5,10 +5,15 @@ import salesRoutes from '../zod/routes/sales.js';
 import authRoutes from '../zod/routes/auth.JS';
 import {logger} from './middleware/logger.js';
 import {verifyToken } from './middleware/token.js';
+//import cors from 'cors';
 
 const app = express();
 const PORT = 3000
 
+/*app.use(cors({
+    origin: 'http://localhost:5173', // Adjust this to your frontend URL
+    credentials: true // Allow credentials if needed
+}));*/
 app.use(express.json());
 app.use(logger);
 
