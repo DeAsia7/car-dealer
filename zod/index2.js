@@ -11,8 +11,8 @@ const app = express();
 const PORT = 3000
 
 app.use(cors({
-    origin: 'http://localhost:5173', // Adjust this to your frontend URL
-    credentials: true // Allow credentials if needed
+    origin: 'http://localhost:5173', 
+    credentials: true 
 }));
 app.use(express.json());
 app.use(logger);
