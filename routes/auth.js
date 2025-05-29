@@ -1,7 +1,6 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import {validateBody} from '../middlewares/validateBody.js';
-import { loginSchema } from '../validators/index.js';
+import {db} from '../db/db.js';
 
 const router = express.Router();
 
@@ -14,7 +13,7 @@ router.post('/login', (req, res) => {
     const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
     const [username, password] = credentials.split(':');
 
-    const user = db.select().from(user).where(and(eq(username, user.username), eq(password, user.password)))
+    const user = db.select().from(users).where(and(eq(username, user.username), eq(password, user.password)))
     if (!user) {
         return res.status(401).json({message: "Invalid credentials"});
     }
