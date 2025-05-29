@@ -1,3 +1,5 @@
+/*
+
 --1.cars:
 -most expensive cars
 max or order by + limit
@@ -53,3 +55,5 @@ INSERT INTO cars (make, model, year,price) VALUES('Toyota', 'Camry', 2025, 30000
 ('Nissan', 'Versa', 2016, 10000), ('Chevrolet', 'Impala', 1967, 15000);
 
 --------------------------------------------------------
+
+*/

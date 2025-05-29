@@ -1,3 +1,5 @@
+/*
+
 --learning zod --
 
 Instructions for Students
@@ -90,7 +92,7 @@ const courseData = {
 };
 */
 
-
+/*
 ⸻
 ------Classwork 4: Nested Object Validation (Medium-Hard)--
 Objective:
@@ -159,7 +161,7 @@ export const registerSchema = z.object({
 
 })
 
-
+*/
 
 
 

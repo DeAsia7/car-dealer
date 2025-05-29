@@ -10,9 +10,9 @@ const pool = mysql.createPool({
     user: process.env.DB_USER,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-    PORT: process.env.DB_PORT,
+    port: process.env.DB_PORT,
 
 })
 
-export const db = drizzle(pool, {schema})
+export const db = drizzle(pool, {schema, mode: "default"})
 export const {cars, clients, sales } = schema;
