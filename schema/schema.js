@@ -2,8 +2,8 @@ import { mysqlTable, int, varchar, decimal, tinyint, datetime } from 'drizzle-or
 
 export const cars = mysqlTable('cars', {
     id: int('id').primaryKey().autoincrement(),
-    make: varchar('make', { length: 255 }),
-    model: varchar('model', { length: 255 }),
+    make: varchar('make', { length: 50 }),
+    model: varchar('model', { length: 50 }),
     year: int('year').notNull(),
     price: decimal('price', { precision: 10, scale: 2 }),
     color: varchar('color', { length: 255 }),

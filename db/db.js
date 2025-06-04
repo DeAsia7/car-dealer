@@ -8,11 +8,11 @@ dotenv.config();
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    database: process.env.DB_NAME,
+    database: process.env.DB_DEFAULT,
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
 
 })
 
 export const db = drizzle(pool, {schema, mode: "default"})
-export const {cars, clients, sales } = schema;
+export const {cars, clients, sales, users } = schema;

@@ -1,12 +1,12 @@
 import express from 'express';
 import { db, cars } from '../db/db.js';
-import { eq, like, and} from 'drizzle-orm';
+import { eq, like, and, gt} from 'drizzle-orm';
 
 const router = express.Router();
 
 // list cars after 2020
 router.get('/after-2020', async (req, res) => {
-    const result = await db.select().from(cars).where(gt(cars.year, 2020));
+    const result = await db.select().from(cars).where(gt(cars.year, Number(2020)));
     res.json(result);
 })
 
