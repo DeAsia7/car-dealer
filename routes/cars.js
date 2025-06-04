@@ -6,9 +6,9 @@ const router = express.Router();
 
 // list cars after 2020
 router.get('/after-2020', async (req, res) => {
-    const result = await db.select().from(cars).where(gt(cars.year, Number(2020)));
+    const result = await db.select().from(cars).where(gt(cars.year, 2020));
     res.json(result);
-})
+}) 
 
 //change price of a car
 router.put('/update-price', async (req, res) => {
