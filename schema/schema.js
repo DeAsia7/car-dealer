@@ -4,7 +4,7 @@ export const cars = mysqlTable('cars', {
     id: int('id').primaryKey().autoincrement(),
     make: varchar('make', { length: 50 }),
     model: varchar('model', { length: 50 }),
-    year: int('year').notNull(),
+    year: int('year'),
     price: decimal('price', { precision: 10, scale: 2 }),
     color: varchar('color', { length: 255 }),
 })
