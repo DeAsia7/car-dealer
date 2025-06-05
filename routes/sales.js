@@ -40,7 +40,7 @@ router.get('/sales/:client_id', async (req, res) => {
 //get full sales report
 router.get('/sales/sales-report', async (req, res) => {
     const result = await db.select({
-        client_name: sql `CONCAT(${clients.first_name}, ' ', ${clients.last_name})`,
+        client_name: sql `CONCAT(${clients.first_name}, ' ', ${clients.last_name})`.as('client_name'),
         make: cars.make,
         model: cars.model,
         price: cars.price,
@@ -53,5 +53,5 @@ router.get('/sales/sales-report', async (req, res) => {
     res.json(result);
 
 })
-export default router;
+export default router; 
 

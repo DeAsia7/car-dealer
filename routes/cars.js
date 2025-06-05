@@ -18,7 +18,7 @@ router.put('/update-price', async (req, res) => {
 
 
 //remove a car
-router.delete('/delete', async (req, res) => {
+router.delete('/old-cars', async (req, res) => {
    const result =  await db.delete(cars).where(lte(cars.year, 2008));
 
     res.json({ message: 'Car deleted successfully', result });
@@ -39,6 +39,12 @@ await db.insert(cars).values([
 router.get('/red-m%', async (req, res) => {
     const result = await db.select().from(cars).where(and(eq(cars.color, 'red'), like(cars.make, 'm%')));
     res.json(result);
+})
+
+//get most expensive car
+router.get('/expensive', async (req, res) => {
+    const result = await db.select().from(cars).orderBy(cars.price, 'desc').limit(1);
+    res.json(result[0]);
 })
 
 export default router;

@@ -36,11 +36,22 @@ router.put('/clients/:id', validateBody(clientSchema),  async(req, res) => {
     res.json({ message: 'Client updated successfully' });
 })
 
-//deleter client
+//delete client
 router.delete('/clients/:id', async (req, res) => {
     const id = parseInt(req.params.id)
     await db.delete(clients).where(eq(clients.id, id));
     res.json({ message: 'Client deleted successfully' });
 })
+
+//list all clients full name. only include clients that have bought a car
+router.get('/clients-with-sales', async (req, res) => {
+    const result = await db.select({full_name: sql`CONCAT(${clients.first_name},' ', ${clients.last_name})`.as('full_name')})
+    .from(sales)
+    .innerJoin(clients, eq(sales.client_id, clients.id))
+    res.json(result);
+})
+
+
+
 
 export default router;
