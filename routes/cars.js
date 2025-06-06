@@ -42,10 +42,13 @@ router.get('/red-m%', async (req, res) => {
 })
 
 //get most expensive car
-router.get('/expensive', async (req, res) => {
-    const result = await db.select().from(cars).orderBy(cars.price, 'desc').limit(1);
-    res.json(result[0]);
-})
+    router.get('/expensive', async (req, res) => {
+        const result = await db.select().from(cars).orderBy(desc(cars.price)).limit(1)
+        res.json(result[0])
+        })
+   
+
+//orderBy is organizINGN the car prices.. desc is starting from the top to bottom
 
 router.post("/", async (req, res) => {
     await db.insert(cars).values(req.body);

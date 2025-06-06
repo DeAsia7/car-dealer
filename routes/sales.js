@@ -1,6 +1,8 @@
 import express from 'express';
 import { db, sales, cars, clients } from '../db/db.js';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
+  
+//use sql when using raw sql ex: concat
 
 const router = express.Router();
 
@@ -30,12 +32,6 @@ router.post('/sales', async (req, res) => {
     await db.insert(sales).values({client_id, car_id, sale_date: new Date()});
 })
 
-//get sales by client id
-router.get('/sales/:client_id', async (req, res) => {
-    const client_id = parseInt(req.params.client_id);
-    const result = await db.select().from(sales).where(eq(sales.client_id, client_id));
-    res.json(result);
-})
 
 //get full sales report
 router.get('/sales/sales-report', async (req, res) => {
@@ -53,5 +49,15 @@ router.get('/sales/sales-report', async (req, res) => {
     res.json(result);
 
 })
+
+//get sales by client id
+// the colon is a url path so it goes at the bottom of th router
+router.get('/sales/:client_id', async (req, res) => {
+    const client_id = parseInt(req.params.client_id);
+    const result = await db.select().from(sales).where(eq(sales.client_id, client_id));
+    res.json(result);
+})
+
+
 export default router; 
 
