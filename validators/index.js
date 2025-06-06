@@ -25,7 +25,7 @@ export const saleSchema = z.object({
 export const carSchema = z.object({
     make: z.string().min(1),
     model: z.string().min(1),
-    year: z.number().int().gte(1980).lte( new Date().getFullYear()+1),
+    year: z.number().int().gte(1980).lte( new Date().getFullYear() + 1),
     price: z.number().positive(),
     color: z.string().min()
 });

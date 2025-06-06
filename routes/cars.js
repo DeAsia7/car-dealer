@@ -47,6 +47,12 @@ router.get('/expensive', async (req, res) => {
     res.json(result[0]);
 })
 
+router.post("/", validatebody(carSchema), async (req, res) => {
+    await db.insert(cars).values(req.body);
+    res.status(201).json({ message: "New Car added successfully" });
+})
+
+
 export default router;
 
 
