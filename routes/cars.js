@@ -1,6 +1,6 @@
 import express from 'express';
 import { db, cars } from '../db/db.js';
-import { eq, like, and, gt} from 'drizzle-orm';
+import { eq, like, and, gt, desc} from 'drizzle-orm';
 
 const router = express.Router();
 
@@ -43,7 +43,7 @@ router.get('/red-m%', async (req, res) => {
 
 //get most expensive car
     router.get('/expensive', async (req, res) => {
-        const result = await db.select().from(cars).orderBy(desc(cars.price)).limit(1)
+        const result = await db.select().from(cars).orderBy(desc(cars.price));
         res.json(result[0])
         })
    
